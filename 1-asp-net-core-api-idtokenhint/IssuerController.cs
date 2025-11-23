@@ -265,13 +265,14 @@ namespace AspNetCoreVerifiableCredentials
         //some helper functions
         protected string GetRequestHostName()
         {
-            string scheme = "https";// : this.Request.Scheme;
-            string originalHost = this.Request.Headers["x-original-host"];
-            string hostname = "";
-            if (!string.IsNullOrEmpty(originalHost))
-                hostname = string.Format("{0}://{1}", scheme, originalHost);
-            else hostname = string.Format("{0}://{1}", scheme, this.Request.Host);
-            return hostname;
+            //string scheme = "https";// : this.Request.Scheme;
+            //string originalHost = this.Request.Headers["x-original-host"];
+            //string hostname = "";
+            //if (!string.IsNullOrEmpty(originalHost))
+            //    hostname = string.Format("{0}://{1}", scheme, originalHost);
+            //else hostname = string.Format("{0}://{1}", scheme, this.Request.Host);
+            //return hostname;
+            return "https://gvwhk7zw-5000.euw.devtunnels.ms";
         }
 
         protected bool IsMobile()
