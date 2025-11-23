@@ -19,8 +19,8 @@
         <button type="button" id="verify-credential" class="button">Verify Credential</button>
         <button type="button" id="check-result" class="button" style="display:none">Check Result</button>
         @if (!string.IsNullOrWhiteSpace((string)ViewData["PhotoClaimName"])) {
-            <input type="checkbox" id="useFaceCheck" name="useFaceCheck" @((bool)ViewData["useFaceCheck"] ? "checked" : "")>
-            <label for="useFaceCheck" id="labelFaceCheck"> Use FaceCheck</label>
+            <input type="checkbox" id="useFaceCheck" name="useFaceCheck" @((bool)ViewData["useFaceCheck"] ? "checked" : "") style="display:none">
+            <label for="useFaceCheck" id="labelFaceCheck" style="display:none"> Use FaceCheck</label>
         } else {
             <input type="checkbox" id="useFaceCheck" name="useFaceCheck" value="0" style="display:none">
             <label for="useFaceCheck" id="labelFaceCheck" style="display:none"> Use FaceCheck</label>
