@@ -45,9 +45,9 @@ namespace AspNetCoreVerifiableCredentials
         }
 
         private IssuanceRequest SetClaims( IssuanceRequest request ) {
-            request.claims = new Dictionary<string, string>();
-            request.claims.Add( "given_name", "Megan" );
-            request.claims.Add( "family_name", "Bowen" );
+            //request.claims = new Dictionary<string, string>();
+            //request.claims.Add( "given_name", "Megan" );
+            //request.claims.Add( "family_name", "Bowen" );
 
             string photoClaimName = "";
             // get photo claim from manifest
