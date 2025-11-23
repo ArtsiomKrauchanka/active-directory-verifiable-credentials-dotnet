@@ -1,6 +1,6 @@
 body {
     font-family: sans-serif;
-    background-color: #E0E0E0;
+    background-color: #ffffff;
 }
 #wrap {
     margin: 0 auto;
@@ -8,7 +8,7 @@ body {
 }
 
 .button {
-    background-color: #3B2E58;
+    background-color: #DC143C;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -21,10 +21,29 @@ body {
   }
 
 .dark-purple-fill {
-  background-color: #3B2E58;
+  background-color: #DC143C;
 }
 .light-purple-fill {
-  background-color: #8661c5;
+  background-color: #DC143C;
+}
+
+.bg-nw-purple {
+  background-color: #DC143C;
+}
+
+.bg-nw-blue {
+  background-color: #DC143C;
+}
+
+.text-nw-white {
+  color: white;
+}
+
+.logo {
+  height: 100px;
+  display: block;
+  margin: 75px auto 0 auto;
+  padding-bottom: 20px;
 }
 
 .icon-small {
@@ -118,6 +137,6 @@ table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #0f0f0f;
+    background-color: #000000;
     color: white;
 }
