@@ -156,6 +156,42 @@ namespace AspNetCoreVerifiableCredentials
                         break;
                     case "presentation_verified":
                         callback = JsonConvert.DeserializeObject<CallbackEvent>(reqState["callback"].ToString() );
+                        
+                        // Log the full callback event with formatted JSON
+                        _log.LogInformation( "=== FULL VERIFIABLE CREDENTIAL PRESENTATION CALLBACK ===" );
+                        _log.LogInformation( JsonConvert.SerializeObject( callback, Formatting.Indented ) );
+                        
+                        // Log the full VC from vp_token if available
+                        if (null != callback.receipt && null != callback.receipt.vp_token ) {
+                            _log.LogInformation( "=== VP TOKEN (JWT) ===" );
+                            foreach (var vpTokenJwt in callback.receipt.vp_token) {
+                                _log.LogInformation( $"VP Token: {vpTokenJwt}" );
+                                try {
+                                    JObject vpToken = GetJsonFromJwtToken( vpTokenJwt );
+                                    _log.LogInformation( "=== DECODED VP TOKEN ===" );
+                                    _log.LogInformation( JsonConvert.SerializeObject( vpToken, Formatting.Indented ) );
+                                    
+                                    if (vpToken["vp"] != null && vpToken["vp"]["verifiableCredential"] != null) {
+                                        var vcTokens = vpToken["vp"]["verifiableCredential"] as JArray;
+                                        if (vcTokens != null) {
+                                            for (int i = 0; i < vcTokens.Count; i++) {
+                                                string vcJwt = vcTokens[i].ToString();
+                                                _log.LogInformation( $"=== VERIFIABLE CREDENTIAL #{i + 1} (JWT) ===" );
+                                                _log.LogInformation( vcJwt );
+                                                
+                                                JObject vc = GetJsonFromJwtToken( vcJwt );
+                                                _log.LogInformation( $"=== DECODED VERIFIABLE CREDENTIAL #{i + 1} ===" );
+                                                _log.LogInformation( JsonConvert.SerializeObject( vc, Formatting.Indented ) );
+                                            }
+                                        }
+                                    }
+                                } catch (Exception ex) {
+                                    _log.LogError( ex, "Error decoding VP token or VC" );
+                                }
+                            }
+                        }
+                        _log.LogInformation( "=== END OF VERIFIABLE CREDENTIAL PRESENTATION ===" );
+                        
                         JObject resp = JObject.Parse( JsonConvert.SerializeObject( new {
                                                                                     status = requestStatus,
                                                                                     message = "Presentation verified",
