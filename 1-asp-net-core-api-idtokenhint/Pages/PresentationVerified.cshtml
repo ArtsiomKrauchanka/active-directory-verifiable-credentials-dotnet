@@ -88,8 +88,12 @@
                     if (respMsg.jti) {
                         addTableRow(tbodyRef, "jti", respMsg.jti);
                     }
-                    var vcSubject = respMsg.subject.split(":");
-                    addTableRow(tbodyRef, "subject", vcSubject[0] + ":" + vcSubject[1] + vcSubject[2] + "...");
+                    var vcSubject = respMsg.subject;
+                    var maxLength = 60;
+                    if (vcSubject.length > maxLength) {
+                        vcSubject = vcSubject.substring(0, maxLength) + "...";
+                    }
+                    addTableRow(tbodyRef, "subject", vcSubject);
                     if (respMsg.revocationStatus) {
                         addTableRow(tbodyRef, "revocationStatus", respMsg.revocationStatus);
                     }
