@@ -1,0 +1,29 @@
+# Azure Configuration
+subscription_id = "your-subscription-id"
+resource_group_name = "your-resource-group-name"
+location = "westeurope"
+
+# Existing Resources
+container_app_environment_name = "your-container-app-environment-name"
+log_analytics_workspace_name = "your-log-analytics-workspace-name"
+application_insights_name = "your-application-insights-name"
+
+# Container App Configuration
+container_app_name = "demov1-formula-vc-demo"
+acr_name = "your-acr-name"  # Must be globally unique, lowercase alphanumeric only
+container_image_name = "formula-vc-app"
+container_image_tag = "latest"
+
+# Scaling Configuration
+min_replicas = 1
+max_replicas = 10
+
+# Verified ID Configuration
+verified_id_tenant_id = "your-tenant-id"
+verified_id_client_id = "your-client-id"
+verified_id_client_secret = "your-client-secret"
+verified_id_did_authority = "your-did-authority"
+verified_id_credential_type = "VerifiedCredentialExpert"
+verified_id_credential_manifest = "https://your-manifest-url"
+verified_id_photo_claim_name = ""  # Leave blank if not using FaceCheck
+
