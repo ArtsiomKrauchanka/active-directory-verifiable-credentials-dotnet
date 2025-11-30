@@ -83,8 +83,8 @@ resource "azurerm_container_app" "main" {
     container {
       name   = var.container_app_name
       image  = "${azurerm_container_registry.main.login_server}/${var.container_image_name}:${var.container_image_tag}"
-      cpu    = 0.5
-      memory = "1.0Gi"
+      cpu    = 0.25
+      memory = "0.5Gi"
 
       env {
         name  = "ASPNETCORE_URLS"

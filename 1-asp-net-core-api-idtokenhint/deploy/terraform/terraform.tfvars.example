@@ -16,7 +16,7 @@ container_image_tag = "latest"
 
 # Scaling Configuration
 min_replicas = 1
-max_replicas = 10
+max_replicas = 1
 
 # Verified ID Configuration
 verified_id_tenant_id = "your-tenant-id"
