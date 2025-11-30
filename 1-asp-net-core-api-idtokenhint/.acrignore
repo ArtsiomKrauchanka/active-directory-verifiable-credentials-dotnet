@@ -1,0 +1,62 @@
+# Terraform files and directories - exclude everything in .terraform
+deploy/terraform/.terraform/**
+deploy/terraform/.terraform/
+**/.terraform/**
+**/.terraform/
+deploy/terraform/.terraform.lock.hcl
+deploy/terraform/*.tfstate
+deploy/terraform/*.tfstate.*
+deploy/terraform/terraform.tfvars
+deploy/terraform/.terraformrc
+deploy/terraform/terraform.rc
+
+# Build outputs
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+.vs/
+*.vsidx
+*.vspscc
+*.vsp
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+*.md
+ReadmeFiles/
+
+# Scripts
+AppCreationScripts/
+*.ps1
+*.sh
+
+# ARM Templates
+ARMTemplate/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+

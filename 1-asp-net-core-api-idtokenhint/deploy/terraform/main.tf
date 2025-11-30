@@ -51,7 +51,7 @@ resource "null_resource" "docker_build_push" {
   }
 
   provisioner "local-exec" {
-    command     = "az acr build --registry ${azurerm_container_registry.main.name} --image ${var.container_image_name}:${var.container_image_tag} --file ${path.module}/../Dockerfile ${path.module}/../.."
+    command     = "Set-Location '${path.module}/../..'; az acr build --registry ${azurerm_container_registry.main.name} --image ${var.container_image_name}:${var.container_image_tag} --file deploy/Dockerfile ."
     interpreter = ["PowerShell", "-Command"]
   }
 
@@ -125,6 +125,66 @@ resource "azurerm_container_app" "main" {
         name  = "VerifiedID__PhotoClaimName"
         value = var.verified_id_photo_claim_name
       }
+
+      env {
+        name  = "VerifiedID__Authority"
+        value = replace(var.verified_id_authority, "{tenant}", var.verified_id_tenant_id)
+      }
+
+      env {
+        name  = "VerifiedID__client_name"
+        value = var.verified_id_client_name
+      }
+
+      env {
+        name  = "VerifiedID__Purpose"
+        value = var.verified_id_purpose
+      }
+
+      env {
+        name  = "VerifiedID__includeQRCode"
+        value = tostring(var.verified_id_include_qr_code)
+      }
+
+      env {
+        name  = "VerifiedID__includeReceipt"
+        value = tostring(var.verified_id_include_receipt)
+      }
+
+      env {
+        name  = "VerifiedID__allowRevoked"
+        value = tostring(var.verified_id_allow_revoked)
+      }
+
+      env {
+        name  = "VerifiedID__validateLinkedDomain"
+        value = tostring(var.verified_id_validate_linked_domain)
+      }
+
+      env {
+        name  = "VerifiedID__IssuancePinCodeLength"
+        value = tostring(var.verified_id_issuance_pin_code_length)
+      }
+
+      env {
+        name  = "VerifiedID__useFaceCheck"
+        value = tostring(var.verified_id_use_face_check)
+      }
+
+      env {
+        name  = "VerifiedID__matchConfidenceThreshold"
+        value = tostring(var.verified_id_match_confidence_threshold)
+      }
+
+      env {
+        name  = "VerifiedID__CredentialExpiration"
+        value = var.verified_id_credential_expiration
+      }
+
+      env {
+        name  = "VerifiedID__CertificateName"
+        value = var.verified_id_certificate_name
+      }
     }
   }
 
@@ -141,10 +201,6 @@ resource "azurerm_container_app" "main" {
       percentage      = 100
       latest_revision = true
     }
-  }
-
-  dapr {
-    enabled = false
   }
 
   depends_on = [null_resource.docker_build_push]

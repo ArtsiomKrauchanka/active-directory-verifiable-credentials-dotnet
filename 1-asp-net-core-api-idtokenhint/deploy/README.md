@@ -51,7 +51,7 @@ Before starting, ensure you have the following:
    - **container_app_environment_name**: Name of your existing Container App Environment
    - **log_analytics_workspace_name**: Name of your existing Log Analytics Workspace
    - **application_insights_name**: Name of your existing Application Insights instance
-   - **acr_name**: Name for the Azure Container Registry (must be globally unique, lowercase alphanumeric only, 5-50 characters)
+   - **acr_name**: Name for the Azure Container Registry (must be globally unique, 5-50 characters, lowercase alphanumeric only - **NO hyphens, underscores, or special characters**)
    - **verified_id_tenant_id**: Your Entra ID Tenant ID
    - **verified_id_client_id**: Your application's Client ID
    - **verified_id_client_secret**: Your application's Client Secret
@@ -129,10 +129,11 @@ You can also verify in the Azure Portal:
 - Verify the Dockerfile path is correct
 - Check ACR build logs in Azure Portal: Navigate to ACR > Tasks > Runs
 
-### ACR Name Already Exists
+### ACR Name Already Exists or Invalid
 
 - ACR names must be globally unique across all Azure subscriptions
-- Choose a different name in `terraform.tfvars`
+- ACR names must be 5-50 characters, lowercase alphanumeric only (no hyphens, underscores, or special characters)
+- Choose a different name in `terraform.tfvars` (e.g., use "demov1acr" instead of "demov1-acr")
 
 ### Container App Fails to Start
 
