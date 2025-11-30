@@ -46,7 +46,12 @@ resource "azurerm_container_registry" "main" {
 resource "null_resource" "docker_build_push" {
   triggers = {
     dockerfile_hash = filemd5("${path.module}/../Dockerfile")
-    project_hash    = sha256(join("", [for f in fileset("${path.module}/../../", "**/*.cs") : filesha256("${path.module}/../../${f}")]))
+    project_hash    = sha256(join("", concat(
+      [for f in fileset("${path.module}/../../", "**/*.cs") : filesha256("${path.module}/../../${f}")],
+      [for f in fileset("${path.module}/../../", "**/*.cshtml") : filesha256("${path.module}/../../${f}")],
+      [for f in fileset("${path.module}/../../", "**/*.csproj") : filesha256("${path.module}/../../${f}")],
+      [for f in fileset("${path.module}/../../", "**/*.json") : filesha256("${path.module}/../../${f}")]
+    )))
     image_tag       = var.container_image_tag
   }
 
