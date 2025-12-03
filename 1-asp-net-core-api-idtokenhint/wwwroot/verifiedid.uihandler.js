@@ -29,8 +29,15 @@ function drawQRCode(requestType, id, url, pinCode) {
         document.getElementById('take-selfie').style.display = "none";
         displayMessage("Waiting for QR code to be scanned");
         if ( pinCode != undefined ) {
-            document.getElementById('pinCode').innerHTML = "Pin code: " + pinCode;
-            document.getElementById('pinCode').style.display = "block";
+            var pinCodeElement = document.getElementById('pinCode');
+            pinCodeElement.innerHTML = "Pin code: " + pinCode;
+            pinCodeElement.style.display = "block";
+            pinCodeElement.style.fontSize = "2em";
+            pinCodeElement.style.fontWeight = "bold";
+            pinCodeElement.style.textAlign = "center";
+            pinCodeElement.style.margin = "20px 0";
+            pinCodeElement.style.padding = "20px";
+            pinCodeElement.style.borderRadius = "8px";
         }
     } else if (requestType == "selfie") {
         displayMessage("Waiting for QR code to be scanned with QR code reader app");
